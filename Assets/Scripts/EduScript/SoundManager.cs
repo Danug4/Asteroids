@@ -1,0 +1,44 @@
+using UnityEngine;
+
+public class SoundManager : MonoBehaviour
+{
+    public AudioClip[] collectionSounds;
+    public AudioSource[] sfxAudioSources;
+
+    public void PlayRandomCollectSound()
+    {
+        float minPitch = 0.8f;
+        float maxPitch = 1.2f;
+
+        AudioSource availableAudioSource = GetFreeAudioSource(sfxAudioSources);
+        int rnd = Random.Range(0, collectionSounds.Length);
+        availableAudioSource.clip = collectionSounds[rnd];
+        availableAudioSource.pitch = Random.Range(minPitch, maxPitch);
+
+        availableAudioSource.Play();
+    }
+
+    public AudioSource GetFreeAudioSource(AudioSource[] sources)
+    {
+        for (int i = 0; i < sources.Length; i++)
+        {
+            if (!sources[i].isPlaying)
+            {
+                return sources[i];
+            }
+        }
+        return null; // If none are available
+    }
+
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    void Start()
+    {
+        
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+}

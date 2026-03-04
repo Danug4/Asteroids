@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1176622264895546685}
   - component: {fileID: 5445551906959531275}
   - component: {fileID: 4449080066976602104}
+  - component: {fileID: 6897911639464152443}
   m_Layer: 0
   m_Name: Asteroid_Small_02
   m_TagString: Untagged
@@ -29,8 +30,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -174,3 +175,19 @@ PolygonCollider2D:
       - {x: 0.05644053, y: 0.008077309}
       - {x: 0.015987247, y: 0.05920893}
   m_UseDelaunayMesh: 1
+--- !u!114 &6897911639464152443
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3324938733627906031}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71dd3bcb36b36e94693e00e876e55ad5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Asteriod
+  collisionDamage: 1
+  healthMax: 1
+  healthCurrent: 0
+  explodeParticle: {fileID: 6889465085305702429, guid: 943a43d67b57f8946a12ad3bfd785101, type: 3}
