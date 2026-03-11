@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6457108529801830132}
   - component: {fileID: 2437783388507508645}
   - component: {fileID: 5839032702362738616}
+  - component: {fileID: 4421880517824266947}
   m_Layer: 0
   m_Name: Asteroid_Small_01
   m_TagString: Untagged
@@ -192,3 +193,21 @@ MonoBehaviour:
   healthMax: 1
   healthCurrent: 0
   explodeParticle: {fileID: 6889465085305702429, guid: 943a43d67b57f8946a12ad3bfd785101, type: 3}
+  chunks: []
+  chunksMin: 0
+  chunksMax: 4
+  explodeDist: 0.1
+  explosionForce: 150
+  spawnChunks: 0
+--- !u!114 &4421880517824266947
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8564599043424693612}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 713581dfb0e7794468362f06266ab9c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ScreenWrap

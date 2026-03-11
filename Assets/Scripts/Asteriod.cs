@@ -9,6 +9,14 @@ public class Asteriod : MonoBehaviour
 
     public GameObject explodeParticle;
 
+    public GameObject[] chunks;
+    public int chunksMin = 0;
+    public int chunksMax = 4;
+    public float explodeDist = 5f;
+    public float explosionForce = 1000f;
+
+    public bool spawnChunks;
+
     private void Start()
     {
         healthCurrent = healthMax;
@@ -57,9 +65,38 @@ public class Asteriod : MonoBehaviour
 
     private void Explode()
     {
-        //Destroy itself
+        if (spawnChunks == true)
+        {
+            int numChunks = Random.Range(chunksMin, chunksMax + 1);
+
+            for (int i = 0; i < numChunks; i++)
+            {
+                CreateAsteriodChunk();
+            }
+        }
+        
         Instantiate(explodeParticle, transform.position, transform.rotation);
         Destroy(gameObject);
     }
+
+    private void CreateAsteriodChunk()
+    {
+        int rndIndex = Random.Range(0, chunks.Length);
+        GameObject chunkRef = chunks[rndIndex];
+
+        Vector2 spawnPos = transform.position;
+        spawnPos.x += Random.Range(-explodeDist, explodeDist);
+        spawnPos.y += Random.Range(-explodeDist, explodeDist);
+
+        GameObject chunk = Instantiate(chunkRef, spawnPos, transform.rotation);
+
+        Vector2 dir = (spawnPos - (Vector2)transform.position).normalized;
+
+        Rigidbody2D rb = chunk.GetComponent<Rigidbody2D>();
+        rb.AddForce(dir * explosionForce);
+    }
+
+  
+
 
 }

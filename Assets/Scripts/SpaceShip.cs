@@ -10,11 +10,14 @@ public class SpaceShip : MonoBehaviour
 
     public GameObject bulletRef;
     public float bulletSpeed;
+    public float bulletLifeTime = 3f;
 
     public float firingRate = 0.33f;
     public float fireTimer = 0f;
 
     private Rigidbody2D rb2D;
+
+    public GameObject firingPoint;
 
     
 
@@ -60,13 +63,22 @@ public class SpaceShip : MonoBehaviour
     }
     public void FireBullet()
     {
-        GameObject bullet = Instantiate(bulletRef, transform.position, transform.rotation);
+        GameObject bullet = Instantiate(bulletRef, firingPoint.transform.position, transform.rotation);
         Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
 
         Vector2 force = transform.up * bulletSpeed;
 
         rb.AddForce(force);
+        Destroy(bullet, bulletLifeTime);
+    }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag != "Bullet")
+        {
+            TakeDamage(1f);
+        }
+        
     }
     public void TakeDamage(float damage)
     {
@@ -81,6 +93,7 @@ public class SpaceShip : MonoBehaviour
 
     public void Explode()
     {
+    
         Debug.Log("Game Over");
         Destroy(gameObject);
     }

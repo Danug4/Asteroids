@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: -2872198748831344305}
   - component: {fileID: 5815342085688527014}
   - component: {fileID: 95101917943368355}
+  - component: {fileID: -2169790455747045379}
   m_Layer: 0
   m_Name: Bullet
   m_TagString: Bullet
@@ -169,3 +170,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6337c41aacba6624d9283a7f61b1e32e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  bulletDamage: 1
+--- !u!114 &-2169790455747045379
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6612881716036037500}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 713581dfb0e7794468362f06266ab9c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ScreenWrap

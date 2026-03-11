@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7963011329652817067}
   - component: {fileID: 2805618527855246665}
   - component: {fileID: 8291690183704837346}
+  - component: {fileID: -4599712676070358050}
   m_Layer: 0
   m_Name: Asteroid_Medium_01
   m_TagString: Untagged
@@ -192,6 +193,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Asteriod
   collisionDamage: 1
-  healthMax: 2
+  healthMax: 1
   healthCurrent: 0
   explodeParticle: {fileID: 6889465085305702429, guid: 4e3b676c9a2537142a3fbbb3d372c9b0, type: 3}
+  chunks:
+  - {fileID: 8564599043424693612, guid: e903e0b128e5d674d81c34a520fce665, type: 3}
+  - {fileID: 3324938733627906031, guid: b3aee7ee9ea0aea46974784bea968627, type: 3}
+  - {fileID: 202962355559354394, guid: f28bddbf4fb01664fb0aea7745cc1709, type: 3}
+  chunksMin: 0
+  chunksMax: 4
+  explodeDist: 0.1
+  explosionForce: 150
+  spawnChunks: 1
+--- !u!114 &-4599712676070358050
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5265718074778253127}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 713581dfb0e7794468362f06266ab9c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ScreenWrap
