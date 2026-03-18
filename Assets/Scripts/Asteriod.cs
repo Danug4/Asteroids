@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class Asteriod : MonoBehaviour
 {
+    public int spawnValue;
+
     public float collisionDamage = 1f;
 
     public float healthMax = 3f;
@@ -17,9 +19,12 @@ public class Asteriod : MonoBehaviour
 
     public bool spawnChunks;
 
+    public SoundManager _SM;
+
     private void Start()
     {
         healthCurrent = healthMax;
+        _SM = FindAnyObjectByType<SoundManager>();
     }
 
      private void OnCollisionEnter2D(Collision2D collision)
@@ -76,6 +81,7 @@ public class Asteriod : MonoBehaviour
         }
         
         Instantiate(explodeParticle, transform.position, transform.rotation);
+        _SM.PlayRandomSound(_SM.explosionSounds);
         Destroy(gameObject);
     }
 

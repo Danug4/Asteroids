@@ -192,9 +192,9 @@ GameObject:
   m_Component:
   - component: {fileID: 3429148412062602334}
   - component: {fileID: 8575349518240421688}
-  - component: {fileID: 8846459134052642900}
   - component: {fileID: 4924962564745958591}
   - component: {fileID: 3901083946499628206}
+  - component: {fileID: 3365265825650835707}
   - component: {fileID: 5645567705583461032}
   m_Layer: 0
   m_Name: SpaceShip
@@ -279,27 +279,6 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
---- !u!114 &8846459134052642900
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9110745833911297900}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 997685adbfcc24647b4cdfbb46cbaf2a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SpaceShip
-  healthMax: 3
-  healthCurrent: 0
-  enginePower: 750
-  turnPower: 75
-  bulletRef: {fileID: 6612881716036037500, guid: 9fd8a69edbba1eb4a83174c3ccedcb3c, type: 3}
-  bulletSpeed: 300
-  bulletLifeTime: 4
-  firingRate: 0.33
-  fireTimer: 0
 --- !u!50 &4924962564745958591
 Rigidbody2D:
   serializedVersion: 5
@@ -314,7 +293,7 @@ Rigidbody2D:
   m_UseAutoMass: 0
   m_Mass: 10
   m_LinearDamping: 1
-  m_AngularDamping: 1
+  m_AngularDamping: 2
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -381,6 +360,29 @@ PolygonCollider2D:
       - {x: 0.014645188, y: 0.305}
       - {x: -0.02501088, y: 0.305}
   m_UseDelaunayMesh: 1
+--- !u!114 &3365265825650835707
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9110745833911297900}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 997685adbfcc24647b4cdfbb46cbaf2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SpaceShip
+  healthMax: 3
+  healthCurrent: 0
+  enginePower: 1000
+  turnPower: 100
+  bulletRef: {fileID: 6612881716036037500, guid: 9fd8a69edbba1eb4a83174c3ccedcb3c, type: 3}
+  bulletSpeed: 500
+  bulletLifeTime: 3
+  firingRate: 0.33
+  fireTimer: 0
+  firingPoint: {fileID: 25373976056504144}
+  _SM: {fileID: 0}
 --- !u!114 &5645567705583461032
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -188,6 +188,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71dd3bcb36b36e94693e00e876e55ad5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Asteriod
+  spawnValue: 1
   collisionDamage: 1
   healthMax: 1
   healthCurrent: 0

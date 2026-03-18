@@ -19,13 +19,15 @@ public class SpaceShip : MonoBehaviour
 
     public GameObject firingPoint;
 
+    public SoundManager _SM;
+
     
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         rb2D = GetComponent<Rigidbody2D>();
-
+        _SM = FindAnyObjectByType<SoundManager>();
         healthCurrent = healthMax;
 
     }
@@ -65,7 +67,7 @@ public class SpaceShip : MonoBehaviour
     {
         GameObject bullet = Instantiate(bulletRef, firingPoint.transform.position, transform.rotation);
         Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
-
+        _SM.PlayRandomSound(_SM.bulletSounds);
         Vector2 force = transform.up * bulletSpeed;
 
         rb.AddForce(force);
@@ -89,12 +91,14 @@ public class SpaceShip : MonoBehaviour
         {
             Explode();
         }
+        _SM.PlayRandomSound(_SM.impactSounds);
     }
 
     public void Explode()
     {
     
         Debug.Log("Game Over");
+        _SM.PlayRandomSound(_SM.deathSounds);
         Destroy(gameObject);
     }
 

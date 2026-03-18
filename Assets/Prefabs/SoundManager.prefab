@@ -54,6 +54,20 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 80b061e9ea6f8a64fb83748a965b5145, type: 3}
   - {fileID: 8300000, guid: 63f07f8b30466dd4bad4230b20b7f325, type: 3}
   - {fileID: 8300000, guid: 40bccaab1c9184c40ba8141673b8f7d4, type: 3}
+  explosionSounds:
+  - {fileID: 8300000, guid: 25c8c5cca6f7ea244aabc64570d1db85, type: 3}
+  - {fileID: 8300000, guid: 80b061e9ea6f8a64fb83748a965b5145, type: 3}
+  - {fileID: 8300000, guid: 63f07f8b30466dd4bad4230b20b7f325, type: 3}
+  - {fileID: 8300000, guid: 40bccaab1c9184c40ba8141673b8f7d4, type: 3}
+  bulletSounds:
+  - {fileID: 8300000, guid: 94f70bfe397832b41bdcf31dafe8220e, type: 3}
+  deathSounds:
+  - {fileID: 8300000, guid: f43cb61127d7c4449ae76eb2931e6fc6, type: 3}
+  impactSounds:
+  - {fileID: 8300000, guid: 3f85c81c65b2c5a41a2fb537142734d0, type: 3}
+  - {fileID: 8300000, guid: b5a6647ef92154f4e9d804820244bb66, type: 3}
+  - {fileID: 8300000, guid: 61126e99899e2b944b7f068203a179f6, type: 3}
+  - {fileID: 8300000, guid: 466de169ab45fac409c046c7ffbf18e5, type: 3}
   sfxAudioSources:
   - {fileID: 3900786396345213386}
   - {fileID: -3075075713787876844}
@@ -456,7 +470,7 @@ AudioSource:
   m_GameObject: {fileID: 6802992917356778749}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: f013dbb07fb0e82439754cf170353776, type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 3a1dcdf29ecbcd943b568a8efdf9d124, type: 3}
   m_PlayOnAwake: 1

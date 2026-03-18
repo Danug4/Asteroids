@@ -201,6 +201,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71dd3bcb36b36e94693e00e876e55ad5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Asteriod
+  spawnValue: 3
   collisionDamage: 1
   healthMax: 1
   healthCurrent: 0
@@ -209,8 +210,6 @@ MonoBehaviour:
   - {fileID: 5265718074778253127, guid: 46b3b476d05c4564cabde43391a949a3, type: 3}
   - {fileID: 4026148275799366017, guid: 22d9b8608ff65fc4e9733932206a6609, type: 3}
   - {fileID: 129665742860604282, guid: 906968739374d40478f440e220920e56, type: 3}
-  - {fileID: 8564599043424693612, guid: e903e0b128e5d674d81c34a520fce665, type: 3}
-  - {fileID: 3324938733627906031, guid: b3aee7ee9ea0aea46974784bea968627, type: 3}
   chunksMin: 2
   chunksMax: 5
   explodeDist: 0.1
