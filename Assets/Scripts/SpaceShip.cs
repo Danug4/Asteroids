@@ -21,6 +21,7 @@ public class SpaceShip : MonoBehaviour
 
     public SoundManager _SM;
 
+    public ScreenFlash flash;
     
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -74,17 +75,18 @@ public class SpaceShip : MonoBehaviour
         Destroy(bullet, bulletLifeTime);
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.tag != "Bullet")
-        {
-            TakeDamage(1f);
-        }
+    //private void OnCollisionEnter2D(Collision2D collision)
+    //{
+    //    if (collision.gameObject.tag != "Bullet")
+    //    {
+    //        TakeDamage(1f);
+    //    }
         
-    }
+    //}
     public void TakeDamage(float damage)
     {
         healthCurrent = healthCurrent - damage;
+        flash.Flash();
 
         // If the player runs out of health (less than 0), if so, destroy self.
         if (healthCurrent <= 0)

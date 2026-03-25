@@ -41,7 +41,7 @@ public class Asteriod : MonoBehaviour
 
         if (collision.gameObject.tag == "Bullet")
         {
-            TakeDamage(1f);
+            TakeDamage(collision.gameObject.GetComponent<Bullet>().bulletDamage);
             Destroy(collision.gameObject);
         }
         /*
