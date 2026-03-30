@@ -22,6 +22,8 @@ public class SpaceShip : MonoBehaviour
     public SoundManager _SM;
 
     public ScreenFlash flash;
+
+    public CameraShake cameraShake;
     
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -87,6 +89,7 @@ public class SpaceShip : MonoBehaviour
     {
         healthCurrent = healthCurrent - damage;
         flash.Flash();
+        cameraShake.ShakeCam(1f, 0.5f);
 
         // If the player runs out of health (less than 0), if so, destroy self.
         if (healthCurrent <= 0)

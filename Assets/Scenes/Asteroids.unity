@@ -733,6 +733,10 @@ PrefabInstance:
       propertyPath: flash
       value: 
       objectReference: {fileID: 338583234}
+    - target: {fileID: 3365265825650835707, guid: 0b52bf86c7f67674bbad715bf76d2e43, type: 3}
+      propertyPath: cameraShake
+      value: 
+      objectReference: {fileID: 519420033}
     - target: {fileID: 3429148412062602334, guid: 0b52bf86c7f67674bbad715bf76d2e43, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.56

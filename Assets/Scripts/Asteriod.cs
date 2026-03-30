@@ -10,6 +10,7 @@ public class Asteriod : MonoBehaviour
     public float healthCurrent;
 
     public GameObject explodeParticle;
+    public CameraShake camShake;
 
     public GameObject[] chunks;
     public int chunksMin = 0;
@@ -20,6 +21,12 @@ public class Asteriod : MonoBehaviour
     public bool spawnChunks;
 
     public SoundManager _SM;
+
+    private void Awake()
+    {
+        camShake = FindAnyObjectByType<Camera>().GetComponent<CameraShake>();
+
+    }
 
     private void Start()
     {
@@ -60,6 +67,9 @@ public class Asteriod : MonoBehaviour
     public void TakeDamage(float damage)
     {
         healthCurrent = healthCurrent - damage;
+
+        float potency = spawnValue * .1f;
+        camShake.ShakeCam(potency, potency);
 
         if (healthCurrent <= 0)
         {
