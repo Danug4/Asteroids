@@ -5,6 +5,8 @@ public class SpaceShip : MonoBehaviour
     public float healthMax = 3f;
     public float healthCurrent;
 
+    public int score;
+
     public float enginePower = 10f;
     public float turnPower = 10f;
 
@@ -23,7 +25,12 @@ public class SpaceShip : MonoBehaviour
 
     public ScreenFlash flash;
 
+    public ScoreUI scoreUI;
+
     public CameraShake cameraShake;
+
+    public float shakeIntensity;
+    public float shakeDuration;
     
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -89,7 +96,7 @@ public class SpaceShip : MonoBehaviour
     {
         healthCurrent = healthCurrent - damage;
         flash.Flash();
-        cameraShake.ShakeCam(1f, 0.5f);
+        cameraShake.ShakeCam(shakeDuration, shakeIntensity);
 
         // If the player runs out of health (less than 0), if so, destroy self.
         if (healthCurrent <= 0)
@@ -103,8 +110,29 @@ public class SpaceShip : MonoBehaviour
     {
     
         Debug.Log("Game Over");
+        GameOver();
         _SM.PlayRandomSound(_SM.deathSounds);
         Destroy(gameObject);
+    }
+
+    public void GameOver()
+    {
+        bool celebrateHiscore = false;
+        if (score > GetHighScore())
+        {
+            SetHighScore(score);
+            celebrateHiscore = true;
+        }
+        scoreUI.Show(celebrateHiscore);
+    }
+
+    public int GetHighScore()
+    {
+        return PlayerPrefs.GetInt("Hiscore", 0);
+    }
+    public void SetHighScore(int score)
+    {
+        PlayerPrefs.SetInt("Hiscore", score);
     }
 
 }

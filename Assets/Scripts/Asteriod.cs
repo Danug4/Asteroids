@@ -4,6 +4,8 @@ public class Asteriod : MonoBehaviour
 {
     public int spawnValue;
 
+    public int scoreValue = 10;
+
     public float collisionDamage = 1f;
 
     public float healthMax = 3f;
@@ -11,6 +13,8 @@ public class Asteriod : MonoBehaviour
 
     public GameObject explodeParticle;
     public CameraShake camShake;
+
+    public float cShakePotencyScale = 0.1f;
 
     public GameObject[] chunks;
     public int chunksMin = 0;
@@ -68,7 +72,7 @@ public class Asteriod : MonoBehaviour
     {
         healthCurrent = healthCurrent - damage;
 
-        float potency = spawnValue * .1f;
+        float potency = spawnValue * cShakePotencyScale;
         camShake.ShakeCam(potency, potency);
 
         if (healthCurrent <= 0)
@@ -89,7 +93,13 @@ public class Asteriod : MonoBehaviour
                 CreateAsteriodChunk();
             }
         }
-        
+
+        SpaceShip ship = FindFirstObjectByType<SpaceShip>();
+        if (ship != null)
+        {
+            ship.score += scoreValue;
+        }
+
         Instantiate(explodeParticle, transform.position, transform.rotation);
         _SM.PlayRandomSound(_SM.explosionSounds);
         Destroy(gameObject);

@@ -190,16 +190,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Asteriod
   spawnValue: 1
+  scoreValue: 2
   collisionDamage: 1
   healthMax: 1
   healthCurrent: 0
   explodeParticle: {fileID: 6889465085305702429, guid: 943a43d67b57f8946a12ad3bfd785101, type: 3}
+  camShake: {fileID: 0}
+  cShakePotencyScale: 0.1
   chunks: []
   chunksMin: 0
   chunksMax: 4
   explodeDist: 0.1
   explosionForce: 150
   spawnChunks: 0
+  _SM: {fileID: 0}
 --- !u!114 &4421880517824266947
 MonoBehaviour:
   m_ObjectHideFlags: 0
