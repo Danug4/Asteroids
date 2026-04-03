@@ -2075,6 +2075,10 @@ PrefabInstance:
       propertyPath: shakeIntensity
       value: 0.2
       objectReference: {fileID: 0}
+    - target: {fileID: 3365265825650835707, guid: 0b52bf86c7f67674bbad715bf76d2e43, type: 3}
+      propertyPath: explodeParticleShip
+      value: 
+      objectReference: {fileID: 6889465085305702429, guid: be56b4ac88635f541823b5b9d5818d95, type: 3}
     - target: {fileID: 3429148412062602334, guid: 0b52bf86c7f67674bbad715bf76d2e43, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.56
