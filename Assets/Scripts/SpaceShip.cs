@@ -31,6 +31,8 @@ public class SpaceShip : MonoBehaviour
 
     public float shakeIntensity;
     public float shakeDuration;
+
+    public GameObject explodeParticleShip;
     
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -112,6 +114,7 @@ public class SpaceShip : MonoBehaviour
         Debug.Log("Game Over");
         GameOver();
         _SM.PlayRandomSound(_SM.deathSounds);
+        Instantiate(explodeParticleShip, transform.position, transform.rotation);
         Destroy(gameObject);
     }
 
