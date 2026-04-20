@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -12,6 +13,14 @@ public class Enemy : MonoBehaviour
 
     public float movementSpeed;
 
+    public float detectionRange;
+
+    public float healthMax;
+    float healthCurrent;
+
+    public float damage;
+
+
     //Get player position
     //Find Current Position
     //Add force towards player 
@@ -19,21 +28,51 @@ public class Enemy : MonoBehaviour
     {
         //spaceShip = GameObject.FindGameObjectWithTag("Player");
         rb2D = GetComponent<Rigidbody2D>();
+
+        healthCurrent = healthMax;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Bullet")
         {
-            //Destroy self and bullet
-            Death();
+            //Destroy bullet
             Destroy(collision.gameObject);
+
+            // take damage, if remaining health <= 0, die
+            healthCurrent -= collision.gameObject.GetComponent<Bullet>().bulletDamage;
+            if (healthCurrent <= 0)
+            {
+                Death();
+            }
+        }
+
+        if (collision.gameObject.tag == "Player")
+        {
+            //Inflict damage upon player
+            spaceShip.GetComponent<SpaceShip>().TakeDamage(damage);
         }
     }
 
     void FixedUpdate()
     {
-        HomeTowardsPlayer();
+        // Find distance to player 
+        float playerDistance = FindDistanceToPlayer();
+
+        // If distance < threshold: home towards player 
+        if (playerDistance < detectionRange)
+        {
+            HomeTowardsPlayer();
+        }
+    }
+    float FindDistanceToPlayer()
+    {
+        float xDim = Mathf.Pow(transform.position.x - spaceShip.transform.position.x,2);
+        float yDim = Mathf.Pow(transform.position.y - spaceShip.transform.position.y,2);
+
+        float distance = Mathf.Sqrt(xDim + yDim);
+
+        return distance;
     }
     void HomeTowardsPlayer()
     {

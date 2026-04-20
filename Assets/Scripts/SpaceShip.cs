@@ -112,7 +112,7 @@ public class SpaceShip : MonoBehaviour
     {
     
         Debug.Log("Game Over");
-        GameOver();
+        //GameOver();
         _SM.PlayRandomSound(_SM.deathSounds);
         Instantiate(explodeParticleShip, transform.position, transform.rotation);
         Destroy(gameObject);
