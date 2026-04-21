@@ -5,6 +5,15 @@ public class SpaceShip : MonoBehaviour
     public float healthMax = 3f;
     public float healthCurrent;
 
+    public float fuelMax;
+    float fuelCurrent;
+    public float fuelUseRotateMod; //Modifier to amount of fuel used when moving 
+    public float fuelUseMoveMod; //Modifier to the amount of fuel used when rotating
+
+    public int ammoMax;
+    int ammoCurrent;
+    public int ammoUseFire; //Amount of ammo used when a bullet is shot
+
     public int score;
 
     public float enginePower = 10f;
@@ -35,12 +44,17 @@ public class SpaceShip : MonoBehaviour
     public GameObject explodeParticleShip;
     
 
+    //If there is enough fuel, apply any movement / rotation and use any fuel if relevant, else ignore movement
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         rb2D = GetComponent<Rigidbody2D>();
         _SM = FindAnyObjectByType<SoundManager>();
+
         healthCurrent = healthMax;
+        ammoCurrent = ammoMax;
+        fuelCurrent = fuelMax;
 
     }
 
@@ -49,16 +63,23 @@ public class SpaceShip : MonoBehaviour
     {
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
-        ApplyThrust(vertical);
-        ApplyTorque(horizontal);
+
+        if (fuelCurrent >= 0)
+        {
+            ApplyThrust(vertical);
+            ApplyTorque(horizontal);
+        }
+        
         UpdateFiring();
+        Debug.Log("Ammo amount: " + ammoCurrent);
+        Debug.Log("fuel amount: " + fuelCurrent);
     }
 
     private void UpdateFiring()
     {
         bool isFiring = Input.GetButton("Fire1");
         fireTimer = fireTimer - Time.deltaTime;
-        if (isFiring && fireTimer <= 0f)
+        if (isFiring && fireTimer <= 0f && ammoCurrent >= 0)
         {
             FireBullet();
             fireTimer = firingRate;
@@ -68,12 +89,14 @@ public class SpaceShip : MonoBehaviour
     {
         Vector2 thrust = transform.up * enginePower * Time.deltaTime * amount;
         rb2D.AddForce(thrust);
+        fuelCurrent -= amount * fuelUseMoveMod;
     }
 
     private void ApplyTorque(float amount)
     {
         float torque = amount * turnPower * Time.deltaTime;
         rb2D.AddTorque(-torque);
+        fuelCurrent -= Mathf.Abs(amount * fuelUseRotateMod);
     }
     public void FireBullet()
     {
@@ -81,6 +104,8 @@ public class SpaceShip : MonoBehaviour
         Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
         _SM.PlayRandomSound(_SM.bulletSounds);
         Vector2 force = transform.up * bulletSpeed;
+
+        ammoCurrent -= ammoUseFire; //Subtract a bullet
 
         rb.AddForce(force);
         Destroy(bullet, bulletLifeTime);
