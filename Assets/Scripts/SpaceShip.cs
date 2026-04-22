@@ -7,8 +7,8 @@ public class SpaceShip : MonoBehaviour
 
     public float fuelMax;
     float fuelCurrent;
-    public float fuelUseRotateMod; //Modifier to amount of fuel used when moving 
-    public float fuelUseMoveMod; //Modifier to the amount of fuel used when rotating
+    //public float fuelUseRotateMod; //Modifier to amount of fuel used when moving 
+    //public float fuelUseMoveMod; //Modifier to the amount of fuel used when rotating
 
     public int ammoMax;
     int ammoCurrent;
@@ -35,6 +35,7 @@ public class SpaceShip : MonoBehaviour
     public ScreenFlash flash;
 
     public ScoreUI scoreUI;
+    UIManager ui;
 
     public CameraShake cameraShake;
 
@@ -42,6 +43,8 @@ public class SpaceShip : MonoBehaviour
     public float shakeDuration;
 
     public GameObject explodeParticleShip;
+
+
     
 
     //If there is enough fuel, apply any movement / rotation and use any fuel if relevant, else ignore movement
@@ -51,10 +54,13 @@ public class SpaceShip : MonoBehaviour
     {
         rb2D = GetComponent<Rigidbody2D>();
         _SM = FindAnyObjectByType<SoundManager>();
+        ui = FindFirstObjectByType<UIManager>().GetComponent<UIManager>();
 
         healthCurrent = healthMax;
         ammoCurrent = ammoMax;
         fuelCurrent = fuelMax;
+
+        ui.SetupSliders(healthMax, healthCurrent, ammoMax, ammoCurrent);
 
     }
 
@@ -64,11 +70,8 @@ public class SpaceShip : MonoBehaviour
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
 
-        if (fuelCurrent >= 0)
-        {
-            ApplyThrust(vertical);
-            ApplyTorque(horizontal);
-        }
+        ApplyThrust(vertical);
+        ApplyTorque(horizontal);
         
         UpdateFiring();
         Debug.Log("Ammo amount: " + ammoCurrent);
@@ -79,7 +82,7 @@ public class SpaceShip : MonoBehaviour
     {
         bool isFiring = Input.GetButton("Fire1");
         fireTimer = fireTimer - Time.deltaTime;
-        if (isFiring && fireTimer <= 0f && ammoCurrent >= 0)
+        if (isFiring && fireTimer <= 0f && ammoCurrent > 0)
         {
             FireBullet();
             fireTimer = firingRate;
@@ -89,14 +92,14 @@ public class SpaceShip : MonoBehaviour
     {
         Vector2 thrust = transform.up * enginePower * Time.deltaTime * amount;
         rb2D.AddForce(thrust);
-        fuelCurrent -= amount * fuelUseMoveMod;
+        //fuelCurrent -= amount * fuelUseMoveMod;
     }
 
     private void ApplyTorque(float amount)
     {
         float torque = amount * turnPower * Time.deltaTime;
         rb2D.AddTorque(-torque);
-        fuelCurrent -= Mathf.Abs(amount * fuelUseRotateMod);
+        //fuelCurrent -= Mathf.Abs(amount * fuelUseRotateMod);
     }
     public void FireBullet()
     {
@@ -106,6 +109,7 @@ public class SpaceShip : MonoBehaviour
         Vector2 force = transform.up * bulletSpeed;
 
         ammoCurrent -= ammoUseFire; //Subtract a bullet
+        ui.UpdateAmmoSlider(ammoCurrent);
 
         rb.AddForce(force);
         Destroy(bullet, bulletLifeTime);
@@ -122,6 +126,8 @@ public class SpaceShip : MonoBehaviour
     public void TakeDamage(float damage)
     {
         healthCurrent = healthCurrent - damage;
+        ui.UpdateHealthSlider(healthCurrent);
+
         flash.Flash();
         cameraShake.ShakeCam(shakeDuration, shakeIntensity);
 
@@ -161,6 +167,20 @@ public class SpaceShip : MonoBehaviour
     public void SetHighScore(int score)
     {
         PlayerPrefs.SetInt("Hiscore", score);
+    }
+
+    public void AddHealth(float amount)
+    {
+        //Debug.Log("Health Old: " + healthCurrent);
+        healthCurrent = Mathf.Clamp(healthCurrent + amount, 0f, healthMax); //Add health up to the maximum health
+        ui.UpdateHealthSlider(healthCurrent);
+        //Debug.Log("Health New: " + healthCurrent);
+    }
+
+    public void AddAmmunition(int amount)
+    {
+        ammoCurrent = Mathf.Clamp(ammoCurrent + amount, 0, ammoMax );
+        ui.UpdateAmmoSlider(ammoCurrent);
     }
 
 }

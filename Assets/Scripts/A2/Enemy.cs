@@ -6,6 +6,7 @@ public class Enemy : MonoBehaviour
 {
     
     public GameObject spaceShip;
+    public GameObject explodeParticleFX;
     
     Rigidbody2D rb2D;
 
@@ -36,7 +37,7 @@ public class Enemy : MonoBehaviour
     {
         if (collision.gameObject.tag == "Bullet")
         {
-            //Destroy bullet
+            //Destroy 
             Destroy(collision.gameObject);
 
             // take damage, if remaining health <= 0, die
@@ -98,6 +99,7 @@ public class Enemy : MonoBehaviour
 
     void Death()
     {
+        Instantiate(explodeParticleFX, transform.position, transform.rotation);
         Destroy(gameObject);
     }
 

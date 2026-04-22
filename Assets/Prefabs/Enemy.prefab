@@ -203,6 +203,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
   spaceShip: {fileID: 0}
+  explodeParticleFX: {fileID: 6889465085305702429, guid: be1a403a6c9e87646b8468652ebc7efd, type: 3}
   movementSpeed: 25
   detectionRange: 6
   healthMax: 3
