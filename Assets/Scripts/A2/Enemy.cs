@@ -21,6 +21,10 @@ public class Enemy : MonoBehaviour
 
     public float damage;
 
+    CameraShake camShake;
+    public float shakeDuration;
+    public float shakeIntensity;
+
 
     //Get player position
     //Find Current Position
@@ -31,14 +35,19 @@ public class Enemy : MonoBehaviour
         rb2D = GetComponent<Rigidbody2D>();
 
         healthCurrent = healthMax;
+
+        camShake = FindFirstObjectByType<Camera>().GetComponent<CameraShake>();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Bullet")
         {
-            //Destroy 
+            //Destroy bullet
             Destroy(collision.gameObject);
+
+            //Shake the Camera
+            camShake.ShakeCam(shakeDuration, shakeIntensity);
 
             // take damage, if remaining health <= 0, die
             healthCurrent -= collision.gameObject.GetComponent<Bullet>().bulletDamage;
