@@ -44,6 +44,9 @@ public class SpaceShip : MonoBehaviour
 
     public GameObject explodeParticleShip;
 
+    public GameObject key;
+    GameObject currentKey;
+    //public Transform keyPos;
 
     
 
@@ -183,4 +186,24 @@ public class SpaceShip : MonoBehaviour
         ui.UpdateAmmoSlider(ammoCurrent);
     }
 
+    public void HoldKey()
+    {
+        //Create a key that follows player
+        //currentKey = Instantiate(key, keyPos.position, keyPos.rotation);
+        //currentKey.transform.position = keyPos.position;
+
+        //Enable Key in front of player
+        key.SetActive(true);
+    }
+    public void RemoveKey()
+    {
+        /*// If there is a key, remove it
+        if (currentKey != null)
+        {
+            Destroy(currentKey);
+        }*/
+
+        //Disable Key in front of player 
+        key.SetActive(false);
+    }
 }

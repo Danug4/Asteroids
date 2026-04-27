@@ -12,10 +12,12 @@ public class Collection : MonoBehaviour
             0: N.a
             1: Health
             2: Ammo
+            3: Key
     */
     public float healthPickupAmount;
     public int ammoPickupAmount;
     SpaceShip spaceShip;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -51,6 +53,10 @@ public class Collection : MonoBehaviour
         if (pickupType == 2) // If ammo
         {
             spaceShip.AddAmmunition(ammoPickupAmount);
+        }
+        if (pickupType == 3) //Key
+        {
+            spaceShip.HoldKey();
         }
     }
 }
