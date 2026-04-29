@@ -20,6 +20,7 @@ public class Lock : MonoBehaviour
         player.RemoveKey();
         if (collider.gameObject.tag == "Key")
         {
+            // Add score to the scoreUI script.
             Destroy(gameObject);
         }
     }

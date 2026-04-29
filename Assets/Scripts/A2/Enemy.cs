@@ -21,6 +21,8 @@ public class Enemy : MonoBehaviour
 
     public float damage;
 
+    public int spawnValue;
+
     CameraShake camShake;
     public float shakeDuration;
     public float shakeIntensity;
@@ -31,7 +33,8 @@ public class Enemy : MonoBehaviour
     //Add force towards player 
     private void Awake()
     {
-        //spaceShip = GameObject.FindGameObjectWithTag("Player");
+        spaceShip = GameObject.FindGameObjectWithTag("Player");
+
         rb2D = GetComponent<Rigidbody2D>();
 
         healthCurrent = healthMax;
@@ -66,14 +69,16 @@ public class Enemy : MonoBehaviour
 
     void FixedUpdate()
     {
-        // Find distance to player 
+        HomeTowardsPlayer();
+
+        /*// Find distance to player 
         float playerDistance = FindDistanceToPlayer();
 
         // If distance < threshold: home towards player 
         if (playerDistance < detectionRange)
         {
             HomeTowardsPlayer();
-        }
+        }*/
     }
     float FindDistanceToPlayer()
     {
@@ -86,6 +91,8 @@ public class Enemy : MonoBehaviour
     }
     void HomeTowardsPlayer()
     {
+        if (spaceShip == null)
+            return;
         //Find direction
         spaceShipPos = new Vector2(spaceShip.transform.position.x, spaceShip.transform.position.y);
         Vector2 direction = new Vector2(spaceShipPos.x - transform.position.x, spaceShipPos.y - transform.position.y);

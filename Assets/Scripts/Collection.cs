@@ -18,6 +18,8 @@ public class Collection : MonoBehaviour
     public int ammoPickupAmount;
     SpaceShip spaceShip;
 
+    public int spawnValue;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()

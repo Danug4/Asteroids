@@ -48,9 +48,16 @@ public class SpaceShip : MonoBehaviour
     GameObject currentKey;
     //public Transform keyPos;
 
-    
+    public bool isAlive;
+
+
 
     //If there is enough fuel, apply any movement / rotation and use any fuel if relevant, else ignore movement
+
+    void Awake()
+    {
+        isAlive = true;
+    }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -77,8 +84,8 @@ public class SpaceShip : MonoBehaviour
         ApplyTorque(horizontal);
         
         UpdateFiring();
-        Debug.Log("Ammo amount: " + ammoCurrent);
-        Debug.Log("fuel amount: " + fuelCurrent);
+        //Debug.Log("Ammo amount: " + ammoCurrent);
+       // Debug.Log("fuel amount: " + fuelCurrent);
     }
 
     private void UpdateFiring()
@@ -138,6 +145,7 @@ public class SpaceShip : MonoBehaviour
         if (healthCurrent <= 0)
         {
             Explode();
+            isAlive = false;
         }
         _SM.PlayRandomSound(_SM.impactSounds);
     }
@@ -145,8 +153,8 @@ public class SpaceShip : MonoBehaviour
     public void Explode()
     {
     
-        Debug.Log("Game Over");
-        //GameOver();
+        //Debug.Log("Game Over");
+        GameOver();
         _SM.PlayRandomSound(_SM.deathSounds);
         Instantiate(explodeParticleShip, transform.position, transform.rotation);
         Destroy(gameObject);
@@ -160,7 +168,9 @@ public class SpaceShip : MonoBehaviour
             SetHighScore(score);
             celebrateHiscore = true;
         }
-        scoreUI.Show(celebrateHiscore);
+        //scoreUI.Show(celebrateHiscore);
+        ui.Show(celebrateHiscore);
+
     }
 
     public int GetHighScore()

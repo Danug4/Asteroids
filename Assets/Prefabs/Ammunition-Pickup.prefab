@@ -285,6 +285,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3552847277022845377}
+  - component: {fileID: 6016553249211449327}
+  - component: {fileID: 3293795362456357203}
   m_Layer: 0
   m_Name: Ammunition-Pickup
   m_TagString: Untagged
@@ -308,6 +310,60 @@ Transform:
   - {fileID: 7637338650222652093}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &6016553249211449327
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5274059691386019556}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_Radius: 0.2
+--- !u!114 &3293795362456357203
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5274059691386019556}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fda535547ebc62141bb52dbaf2dfd904, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Collection
+  particle: {fileID: 6035786344662219403, guid: 7146617ff6db04c44836b08da81a9fa6, type: 3}
+  _SM: {fileID: 0}
+  pickupType: 2
+  healthPickupAmount: 0
+  ammoPickupAmount: 10
+  spawnValue: 1
 --- !u!1 &5950717838839865502
 GameObject:
   m_ObjectHideFlags: 0

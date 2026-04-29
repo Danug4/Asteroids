@@ -5,7 +5,7 @@ public class TitleScreenUI : MonoBehaviour
 {
     public void ClickPlay()
     {
-        SceneManager.LoadScene("Asteroids"); //This is the scene name
+        SceneManager.LoadScene("SurvivalGame"); //This is the scene name
     }
 
     public void ClickPlayPlayground()
