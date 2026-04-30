@@ -474,8 +474,9 @@ GameObject:
   m_Component:
   - component: {fileID: 407712695}
   - component: {fileID: 407712696}
+  - component: {fileID: 407712697}
   m_Layer: 0
-  m_Name: Managers
+  m_Name: Managers-Spawners
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -513,9 +514,29 @@ MonoBehaviour:
   - {fileID: 5274059691386019556, guid: d55add4584b794940876b4298d8711e8, type: 3}
   enemies:
   - {fileID: 2918229668853616318, guid: 9a9f92b9f9f62764fbb7fa6b5cb4e266, type: 3}
+  cam: {fileID: 477738461}
   enemyValueChangeAmount: 1
   pickupValueChangeAmount: 1
   waitTime: 4
+--- !u!114 &407712697
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 407712694}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3866c793db7ac7a45ae8557603a69878, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LockAndKeySpawner
+  checkWaitTime: 10
+  spawnWaitTime: 2
+  lockLimit: 1
+  cam: {fileID: 477738461}
+  lockPrefab: {fileID: 1146545864374793519, guid: 269680b6520c2214ca153300c3f4e745, type: 3}
+  lockSpawnPoint: {fileID: 924505353}
+  keyPrefab: {fileID: 2807762297975315496, guid: 1b91077f7d5c28d4f8c7a124f50e0acb, type: 3}
 --- !u!1 &414204529
 GameObject:
   m_ObjectHideFlags: 0
@@ -1413,6 +1434,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 895116434}
   m_CullTransparentMesh: 1
+--- !u!1 &924505352
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 924505353}
+  m_Layer: 0
+  m_Name: LockSpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &924505353
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 924505352}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -6.73, y: -4.43, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1035603228
 GameObject:
   m_ObjectHideFlags: 0
@@ -2713,6 +2765,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60cc7d74b45aa1141a3cb6237b4d6e30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Lock
+  moveSpeed: 1
+  moveDir: 1
+  moveDirPeriod: 3
 --- !u!1 &1955379674
 GameObject:
   m_ObjectHideFlags: 0
@@ -3526,7 +3581,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6324705256952808485, guid: 269680b6520c2214ca153300c3f4e745, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.02
+      value: -6.71
       objectReference: {fileID: 0}
     - target: {fileID: 6324705256952808485, guid: 269680b6520c2214ca153300c3f4e745, type: 3}
       propertyPath: m_LocalPosition.y
@@ -3587,3 +3642,4 @@ SceneRoots:
   - {fileID: 2797504077094877390}
   - {fileID: 7684614726170176373}
   - {fileID: 407712695}
+  - {fileID: 924505353}

@@ -17,7 +17,7 @@ public class LevelManager : MonoBehaviour
     SpaceShip player;
     bool keepGoing;
 
-    Camera cam;
+    public Camera cam;
 
     int enemyValueCurrent;
     int enemyValueLimit;
@@ -33,7 +33,7 @@ public class LevelManager : MonoBehaviour
     {
         player = FindFirstObjectByType<SpaceShip>().GetComponent<SpaceShip>();
         StartCoroutine(CalculateAndSpawn());
-        cam = Camera.main;
+        //cam = FindFirstObjectByType<Camera>();
     }
 
     IEnumerator CalculateAndSpawn()
@@ -46,18 +46,18 @@ public class LevelManager : MonoBehaviour
             //Update limits
             enemyValueLimit += enemyValueChangeAmount;
             pickupValueLimit += pickupValueChangeAmount;
-            Debug.Log("Pickup spawn limit: " + pickupValueLimit);
+            //Debug.Log("Pickup spawn limit: " + pickupValueLimit);
 
             //Determine the current value 
             enemyValueCurrent = FindCurrentEnemyValue();
             pickupValueCurrent = FindCurrentPickupValue();
-            Debug.Log("Current pickup value: " + pickupValueCurrent);
+            //Debug.Log("Current pickup value: " + pickupValueCurrent);
 
             //Spawn new objects
             if (pickupValueCurrent < pickupValueLimit)
             {
                 Spawner(pickups, true);
-                Debug.Log("Spawned a pickup :)");
+                //Debug.Log("Spawned a pickup :)");
             }
             if (enemyValueCurrent < enemyValueLimit)
             {
@@ -144,6 +144,7 @@ public class LevelManager : MonoBehaviour
     }
     public Vector3 OffScreenSpawnPoint()
     {
+        //Debug.Log("Camera: " + cam);
         if (cam == null)
             return transform.position;
 
