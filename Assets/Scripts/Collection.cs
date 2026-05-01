@@ -60,5 +60,9 @@ public class Collection : MonoBehaviour
         {
             spaceShip.HoldKey();
         }
+        if (pickupType == 4) //Bomb - destroy all enemies
+        {
+            spaceShip.DestroyAllEnemies();
+        }
     }
 }

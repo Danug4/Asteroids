@@ -6,6 +6,8 @@ public class Enemy : MonoBehaviour
 {
     
     public GameObject spaceShip;
+    SpaceShip player;
+
     public GameObject explodeParticleFX;
     
     Rigidbody2D rb2D;
@@ -27,19 +29,26 @@ public class Enemy : MonoBehaviour
     public float shakeDuration;
     public float shakeIntensity;
 
+    public int scoreGained;
+
 
     //Get player position
     //Find Current Position
     //Add force towards player 
     private void Awake()
     {
-        spaceShip = GameObject.FindGameObjectWithTag("Player");
+       
 
         rb2D = GetComponent<Rigidbody2D>();
 
         healthCurrent = healthMax;
 
         camShake = FindFirstObjectByType<Camera>().GetComponent<CameraShake>();
+
+        //Find player and (if player is alive) make reference to player script
+        spaceShip = GameObject.FindGameObjectWithTag("Player");
+        if (spaceShip == null) return;
+        player = spaceShip.GetComponent<SpaceShip>();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -63,7 +72,7 @@ public class Enemy : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             //Inflict damage upon player
-            spaceShip.GetComponent<SpaceShip>().TakeDamage(damage);
+            player.TakeDamage(damage);
         }
     }
 
@@ -113,9 +122,10 @@ public class Enemy : MonoBehaviour
         return turnAngle;
     }
 
-    void Death()
+    public void Death()
     {
         Instantiate(explodeParticleFX, transform.position, transform.rotation);
+        player.score += scoreGained;
         Destroy(gameObject);
     }
 

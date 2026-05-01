@@ -12,12 +12,14 @@ public class Lock : MonoBehaviour
     public float moveSpeed;
     public float moveDir; //1 or -1 
     public float moveDirPeriod;
+    public int scoreGained; 
 
     SpaceShip player;
 
     void Awake()
     {
         player = FindFirstObjectByType<SpaceShip>().GetComponent<SpaceShip>();
+        StartCoroutine(ChangeDirection());
 
     }
 
@@ -30,21 +32,24 @@ public class Lock : MonoBehaviour
         if (collider.gameObject.tag == "Key")
         {
             // Add score to the scoreUI script.
+            player.score += scoreGained;
             Destroy(gameObject);
         }
     }
 
     void Update()
     {
-        transform.position.x += moveSpeed * moveDir * Time.deltaTime; 
+        transform.position += new Vector3(moveSpeed * moveDir * Time.deltaTime,0,0);
+        
     }
 
     IEnumerator ChangeDirection()
     {
         while (player.isAlive == true)
         {
-            moveDir = moveDir * -1; //Swap direction
             yield return new WaitForSeconds(moveDirPeriod);
+            moveDir = moveDir * -1; //Swap direction
+            
         }
     }
 }

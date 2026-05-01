@@ -115,7 +115,7 @@ public class LevelManager : MonoBehaviour
         }*/
 
 
-        //Determine value 
+        //Determine total value of collectables in the game
         int value = 0;
         for (int index = 0; index < collectables.Length; index++)
         {

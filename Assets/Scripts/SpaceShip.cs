@@ -195,6 +195,19 @@ public class SpaceShip : MonoBehaviour
         ammoCurrent = Mathf.Clamp(ammoCurrent + amount, 0, ammoMax );
         ui.UpdateAmmoSlider(ammoCurrent);
     }
+    
+    public void DestroyAllEnemies()
+    {
+        //Make a list of all enemies in game 
+        //For each enemy -> call destroy or equivelent function
+
+        Enemy[] enemies = FindObjectsByType<Enemy>(FindObjectsSortMode.None);
+        for (int index = 0; index < enemies.Length; index++)
+        {
+            enemies[index].Death();
+        }
+        cameraShake.ShakeCam(shakeDuration, shakeIntensity);
+    }
 
     public void HoldKey()
     {
