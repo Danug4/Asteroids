@@ -50,6 +50,8 @@ public class SpaceShip : MonoBehaviour
 
     public bool isAlive;
 
+    float startLinDamp;
+    float startAngDamp;
 
 
     //If there is enough fuel, apply any movement / rotation and use any fuel if relevant, else ignore movement
@@ -57,6 +59,7 @@ public class SpaceShip : MonoBehaviour
     void Awake()
     {
         isAlive = true;
+
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -72,6 +75,10 @@ public class SpaceShip : MonoBehaviour
 
         ui.SetupSliders(healthMax, healthCurrent, ammoMax, ammoCurrent);
 
+        //Get the rigidbody damping settings upfront
+        startAngDamp = rb2D.angularDamping;
+        startLinDamp = rb2D.linearDamping;
+
     }
 
     // Update is called once per frame
@@ -80,12 +87,38 @@ public class SpaceShip : MonoBehaviour
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
 
+        DetermineDamping(horizontal,vertical);
+
         ApplyThrust(vertical);
         ApplyTorque(horizontal);
         
         UpdateFiring();
         //Debug.Log("Ammo amount: " + ammoCurrent);
        // Debug.Log("fuel amount: " + fuelCurrent);
+    }
+
+    void DetermineDamping(float hInput, float vInput)
+    {
+        //Only apply damping when no input is recieved
+        hInput = Mathf.Abs(hInput);
+        vInput = Mathf.Abs(vInput);
+        if (hInput > 0)
+        {
+            rb2D.angularDamping = 1;
+        } 
+        else
+        {
+            rb2D.angularDamping = startAngDamp;
+        }
+
+       /* if (vInput > 0)
+        {
+            rb2D.linearDamping = 1;
+        }
+        else
+        {
+            rb2D.linearDamping = startLinDamp;
+        }*/
     }
 
     private void UpdateFiring()
@@ -108,6 +141,7 @@ public class SpaceShip : MonoBehaviour
     private void ApplyTorque(float amount)
     {
         float torque = amount * turnPower * Time.deltaTime;
+
         rb2D.AddTorque(-torque);
         //fuelCurrent -= Mathf.Abs(amount * fuelUseRotateMod);
     }
